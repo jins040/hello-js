@@ -454,9 +454,26 @@ jQuery(document).ready(function() {
 });
 
 
+//AJAX
+jQuery(document).ready(function() {
+   $('#myForm').on('click', 'input:button', function () {
+       //$.ajax(a, b)에서 a는 서버 URL, b는 객체를 parameter로 받는다.
+       $.ajax('https://api.github.com/users/jins040', {
+           success: function (response) {
+               //$('#resultDiv').text(response);  //서버에서 받아온 AJAX의 JSON data가 #resultDiv에 'java객체'로 출력 -> parsing 필요
+               var login = response.login;
+               var id = response.id;
+               var loc = response.location;
+               var cAt = response.created_at;
 
-
-
+               $('#destinations').children(':first-child').children('h2').text(login);
+               $('#destinations').children(':nth-child(2)').text(id);
+               $('#destinations').children(':nth-child(3)').text(loc);
+               $('#destinations').children(':nth-child(4)').text(cAt);
+           }
+       });//ajax
+   });
+});
 
 
 

@@ -21,9 +21,15 @@
             총 <span>0</span>원
         </li>
     </ul>
-    <form id="myForm">
+    <form id="myForm" data-price="562">
         수량 : <input type="text" size="3">개당 562원
+        <br>
+        ajax요청: <input type="button" value="요청합니다.">
     </form>
+
+    <div id="resultDiv">
+
+    </div>
 
 <script src="scripts/jquery-3.2.1.js"></script> <!--순서 중요, jquery가 먼저 와야 main에서 사용 가능-->
 <script src="scripts/main.js"></script> <!--프로그램을 처리하다가 script를 만나면 main.js를 수행한다.-->
