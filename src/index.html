@@ -2,11 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>JQuery Adventures</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>Where do you wanna go?</h1>
+    <h2>Travel Destinations</h2>
+    <p>Plan your next adventure.</p>
+    <ul id="destinations">
+        <li class="vacation">
+            <h2>Taiwan</h2>
+            <button>Get Price</button>
+        </li>
+        <li>Tokyo</li>
+        <li>Bangkok</li>
+        <li>Phnompenh</li>
+        <li class="promo">Manila</li>
+        <li>
+            총 <span>0</span>원
+        </li>
+    </ul>
+    <form id="myForm">
+        수량 : <input type="text" size="3">개당 562원
+    </form>
 
+<script src="scripts/jquery-3.2.1.js"></script> <!--순서 중요, jquery가 먼저 와야 main에서 사용 가능-->
 <script src="scripts/main.js"></script> <!--프로그램을 처리하다가 script를 만나면 main.js를 수행한다.-->
 </body>
 </html>

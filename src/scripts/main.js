@@ -257,6 +257,7 @@ if (clickConfirm) {
 */
 
 
+/*
 // 12. 자바스크립트 객체(Literal)
 var obj = {};
 
@@ -311,6 +312,173 @@ var artList =
             content: '테스트2에요..'
         }
     ];
+*/
+
+
+
+
+// JQUERY 시작하기
+
+/*
+// 01. jQuery - hello
+jQuery(document).ready(function () {        //Jquery 시작 format, parameter로 익명 함수
+    var theText = $('h1').text();           //특정 element에 대한 조작
+
+    console.log(theText);
+
+    $('h1').text('너 어디가니?');
+
+    var pText = $('p').text();
+    console.log(pText);
+    $('p').text('I am planning to go US!');
+});
+*/
+
+/*
+// 02. 셀렉팅
+jQuery(document).ready(function () {
+    $('li').first().text('seoul');              //list element 중 첫 번째 변화
+    $('li').first().next().text('seoul');       //list element 중 첫 번째 다음 것 변화
+
+    $('#destinations');                         //id selecting
+    $('.promo');                                //class selecting
+
+    $('#destinations li');                      //ul tag 하위 li selecting, 부모 자식 관계
+    $('#destinations > li');                    //바로 직속 tag만(하위에 다른 ul tag 등 있으면 X)
+
+    $('.promo, #destinations');                 //comma를 통한 나열
+});
+*/
+
+/*
+// 03. Pseudo classes, 필터 기능
+jQuery(document).ready(function () {
+    //$('#destinations li:first').text('대만');     //.first()와 비교(속도 등 성능 차이 존재)
+    //$('#destinations li:last').text('마닐라');
+
+    //$('#destinations li:odd').text('seoul');        //홀수 번째 li 변화(index가 0부터 시작, even은 짝수)
+
+    $('#destinations').find('li').text('seoul');    //위 방법보다 .find()와 같이 chaining 방식이 속도 더 빠르다(.first()도 마찬가지)
+
+    //.parent()는 바로 상위 단계로
+    //.children('li')는 직속 하위 tag(#destinations > li 와 마찬가지)
+
+    //CSS selector 주소 참고, ID는 하나만 존재하기 때문에 시작 점을 ID로(Class는 여러 개 가능)
+    //#bookBigCon > ul:nth-child(1) > li:nth-child(2) > div.goods_img.bookTip > span > a > img
+    $('#bookBigCon').children('ul').first().children('li').first().next()
+        .children('div.goods.img.bookTip').children('span').children('a').children('img');
+
+    //#eBookTabCon01 > div.newGoodsArea > ul > li:nth-child(1) > div.goods_info > p.goods_price
+    $('#eBookTabCon01').children('div.newGoodsArea').children('ul').children('li').first()
+        .children('div.goods_info').children('p.goods_price');
+});
+*/
+
+/*
+// 04. DOM 다루기
+jQuery(document).ready(function() {
+    var priceTag = $('<p>From $399.99</p>');
+    $('#destinations').children('li.vacation').append(priceTag);    //html source에는 보이지 않지만 developer tool의 element에는 보인다
+                                                                    //동적 tag는 developer에서만 보인다.
+
+    $('#destinations').children('li.vacation').prepend(priceTag);   //append와 구분(위치 차이)
+
+    $('#destinations').children('li.promo').remove();
+});
+*/
+
+/*
+// 05. 이벤트와 함께 DOM 다루기
+jQuery(document).ready(function() {
+    $('button').on('click', function() {
+        //alert('button clicked');
+
+        // //버튼 사라지게 한다.
+        // $('#destinations').children('li.vacation').children('button').remove();
+        // //버튼이 현재 위치에 나타나게 한다.
+        // var priceTag = $('<p>From $399.99</p>');
+        // $('#destinations').children('li.vacation').append(priceTag);
+
+        // //버튼 사라지게 한다.
+        // $(this).remove();                                        //this는 이벤트 발생 시점 기준
+        // //버튼이 현재 위치에 나타나게 한다.
+        // var priceTag = $('<p>From $399.99</p>');
+        // $('#destinations').children('li.vacation').append(priceTag);
+
+        //버튼이 현재 위치에 나타나게 한다.
+        var priceTag = $('<p>From $399.99</p>');
+        $(this).after(priceTag);
+        //버튼 사라지게 한다.
+        $('#destinations').children('li.vacation').children('button').remove();
+
+    });
+});
+*/
+
+/*
+// 06. 이벤트가 적용되는 대상
+jQuery(document).ready(function() {                                             //append, prepend 등 기존 html에는 없다가 추가로 생성된 부분에 대하여
+    $('.vacation').on('click', 'button', function() {                           //아버지 element 기준으로 동적으로 생성된 버튼에도 event 할당
+        //버튼이 현재 위치에 나타나게 한다.                                        //document 생성 이후 추가로 생성된 동적 이벤트는 작동하지 않는다.
+        var priceTag = $('<p>From $399.99</p>');
+        $(this).after(priceTag);
+        //버튼 사라지게 한다.
+        $('#destinations').children('li.vacation').children('button').remove();
+
+    });
+});
+*/
+
+
+// 07. 마우스 이벤트
+jQuery(document).ready(function() {
+    $('#destinations').on('mouseenter', 'li:nth-child(2)', function () {
+        //$(this).parent('#destinations').children('li').last().hide();
+        //$(this).parent('#destinations').children('li:last-child').fadeOut();
+        $(this).closest('#destinations').children('li').last().prev().slideUp();
+    });
+
+    $('#destinations').on('mouseout', 'li:nth-child(2)', function () {
+        $(this).parent('#destinations').children('li:last-child').prev().fadeIn();
+    });
+});
+
+// 08. 키보드 이벤트(보통 key-up 때 동작하도록 한다.)
+jQuery(document).ready(function() {
+    $('#myForm').on('keyup', 'input:text', function() {
+        var price = 562;
+        //var quantity = +$(this).val();  // + 적어주면 parseInt 효과(String을 number로), Input box 값은 val로 받는다.
+        var quantity = isNaN(+$(this).val()) ? 0 : +$(this).val();   // +$(this).val() === NaN은 3항 연산자(type까지 비교)
+        $('#destinations').children('li').last().children('span').text(price * quantity);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
