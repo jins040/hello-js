@@ -470,11 +470,50 @@ jQuery(document).ready(function() {
                $('#destinations').children(':nth-child(2)').text(id);
                $('#destinations').children(':nth-child(3)').text(loc);
                $('#destinations').children(':nth-child(4)').text(cAt);
+           },
+           data: {"confNum": 1234},
+           beforeSend: function () {
+               $('#resultDiv').text('before loading');
+           },
+           complete: function () {
+               $('#resultDiv').text('after loading');
            }
        });//ajax
    });
 });
 
+//Animation
+jQuery(document).ready(function () {
+    $('.box').on('mouseover', function () {
+       $(this).animate({
+          'opacity': 0.25,
+       });
+    });
+
+    $('.box').on('mouseout', function () {
+       $(this).animate({
+           'opacity': 1.0,
+       });
+    });
+});
+
+// $(document).ready(function () {
+//    $('.box').animate({
+//        'opacity': 0.25,
+//    })
+// });
+
+
+//Form Element
+jQuery(document).ready(function () {
+   var email = $("#email").val('Email입니다.');
+
+   var jobs = $('#jobs').val();
+   $('#jobs').val('2');
+   $('#jobs').on('change', function () {
+       alert($('#jobs option:selected').text());
+   })
+});
 
 
 

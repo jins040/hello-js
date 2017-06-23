@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>JQuery Adventures</title>
+    <style>
+        .box {
+            width: 50px;
+            height: 20px;
+            position: absolute;
+            background: red;
+        }
+    </style>
 </head>
 <body>
     <h1>Where do you wanna go?</h1>
@@ -31,7 +39,62 @@
 
     </div>
 
+    <br><br>
+
+    <!--Animation-->
+    <div class="boxAnimate">
+        <div class="box inline"></div><br>
+        <div class="box inline"></div><br>
+    </div>
+
+    <br><br><br>
+
+    <!--Form Element-->
+    <label for="email">이메일</label>  <!--label for=" ": input tag에 대응하는 label 찾기에 용이-->
+    <hr>
+    <input type="text" id="email" placeholder="Email을 입력하세요."><br>
+    <br>
+
+    <label for="jobs">직업</label>
+    <hr>
+    <select id="jobs">
+        <option value="0">선택하세요.</option>
+        <option value="1">회사원</option>
+        <option value="2">학생</option>
+        <option value="3">교수</option>
+    </select><br>
+
+    <br><br>
+
+    <span class="title">연령대</span><hr>
+    <label for="age10"></label>
+
 <script src="scripts/jquery-3.2.1.js"></script> <!--순서 중요, jquery가 먼저 와야 main에서 사용 가능-->
 <script src="scripts/main.js"></script> <!--프로그램을 처리하다가 script를 만나면 main.js를 수행한다.-->
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
